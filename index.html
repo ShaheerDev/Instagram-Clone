@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+        <!-- FIREBASE SCRIPTS-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-storage.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyANSEld2jQC2cbf4zASqpsEytxK2wN1msM",
+    authDomain: "instakilo-clone.firebaseapp.com",
+    databaseURL: "https://instakilo-clone.firebaseio.com",
+    projectId: "instakilo-clone",
+    storageBucket: "instakilo-clone.appspot.com",
+    messagingSenderId: "1039870657448",
+    appId: "1:1039870657448:web:f4b0d35a9584ed73ab539d",
+    measurementId: "G-DM927NTHKJ"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+    <script>
+        function getdata(){
+    firebase.database().ref().on("child_added", function(snapshot){
+    //Get element
+    const snap = snapshot.val()
+    var imageURL = snap.imageURL;
+    //Make element
+    var imageelem = document.createElement("img");
+    var p = document.createElement("p");
+    var div = document.createElement("div")
+    imageelem.setAttribute("width","170")
+    imageelem.setAttribute("height","148")
+    imageelem.src = imageURL;
+    div.setAttribute("class", "");
+    div.appendChild(imageelem);
+    div.setAttribute("class", "product")
+    div.appendChild(p);
+    p.innerHTML = snap.description;
+    document.getElementById("imagediv").appendChild(div);
+    })
+}
+    </script>
+</head>
+<body onload="getdata()">
+    <!-- The Header-->
+    <div class="header">
+      <h1>INSTA<b>KILO</b> (a clone of Insta<b>gram</b>)</h1>
+    </div>
+    <!-- The Upload section-->
+    <div class="upload">
+        <textarea placeholder="Enter description" cols="50" style="resize: none;" id="descripton"></textarea>
+   </div>
+    <div class="upload">
+        <input type="file" id="filebutton" style="position: absolute;left: 630px;background-color: bisque;">
+        <button onclick="work()" style="position: absolute;left: 830px;background-color:cornflowerblue;">Upload</button>
+    </div>
+    <div style="visibility: hidden;"><h4>invisible</h4></div>
+    <!-- The images-->
+    <div class="images" id="imagediv">
+
+    </div>
+    <!-- SCRIPTS-->
+    <script src="app.js"></script>
+</body>
+</html>

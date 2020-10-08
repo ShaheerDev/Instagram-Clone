@@ -1,0 +1,25 @@
+body {
+    font-family: sans-serif;
+}
+
+.header {
+    text-align: center;
+    align-items: center;
+    background-color: bisque;
+}
+
+.upload {
+    text-align: center;
+    align-items: center;
+    background-color: bisque;
+}
+
+.images {
+    background-color: bisque;
+}
+
+.product {
+    width: 15%;
+    float: left;
+    background-color: bisque;
+}
